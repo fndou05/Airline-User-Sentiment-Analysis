@@ -360,16 +360,20 @@ ROC for all models:
 
 * Logisitc Regression was consistently the best performing model however it not extremely time efficient. It take me about 5 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
    <br>
+   
 * TF-IDF had better cross-validation scores and lower variance but Count Vectorization did out perform on certain models such as Multinominal. 
    <br>
+   
 * TF-IDF Vectorization seems to work best with our current dataset. I found that the models actually ran quicker for TF-IDF as well as the scores tended to be better. Count Vectorization seemed to allow some overfitting as the test scores did not match the train set very well
    <br>
 
 ### Recommendations
 * If we are looking for the best scores possible I would suggest using the Logistic Regression model. However I would incorporate the use of some sort of cloud service that would allow for more time efficient testing
-   <br> 
+   <br>
+  
 * MultinominalNB was the fastest performing model that had acceptable test scores. If we were working on a time constraint I would recommend that 
    <br>
+   
 * This dataset was fairly imbalanced. Assuming you did not want to tamper with anything I would suggest using some form of boosting algorithm. (XGBoost, Gradient Boosting)
 
 
@@ -379,12 +383,16 @@ To continue improving and expanding this project, here are some suggested next s
 
 * Cloud Deployment: I would consider deploying the machine learning model to a cloud service, such as AWS or Saturn Cloud. This will enable me to conduct more extensive hyperparameter tuning and make the model accessible for real-world predictions.
   <br>
+  
 * Establish a Comprehensive Model Training Pipeline: Creating a well-defined model training pipeline is crucial for managing the end-to-end machine learning process efficiently. This pipeline should encompass various stages, from data preprocessing to model evaluation. Here's a breakdown of key components:
   <br>
+  
 * Due to time constraints, I was only able to fully hyperparameter tune 4 models, which were the highest performing baseline models. However I left the code for all the other models.
   <br>
+  
 * Neural networks are known for their performance. Through using Tensorflow and Keras we could optimize a model that would allow us to be able to predict with a higher precision and accuracy.
   <br>
+  
 * We could expand our model by also predicting what caused the negative review as well. We can predict if a review is negative or not, however to predicit if a review is negative and why would significantly contribute to JetBlue as a whole
   
 

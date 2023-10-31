@@ -6,185 +6,378 @@
 
 ## Overview
 
-The HR department plays a crucial role in identifying the right candidates for job positions. However, the process of determining a candidate's suitability can be time-consuming and subject to biases. To streamline their decision-making process and make it more data-driven, the HR department aims to develop a Machine Learning (ML) classification model. This model will predict whether a candidate is likely to earn more than $50,000 annually, helping the HR team make informed decisions about candidate qualifications.
+Just like any business, airlines have customers to please. Its cruical to make sure that every passenger is left with a positive experience. Social media has allowed us and others to be able to publicly express their opinions about many things including experiences and sentiment towards companies. This is incredibly useful feedback for companies as they can see what the most common complaints are as well as other factors.
 
 
 ## Business Problem
 
-Microsoft is tasking me with demonstrating my data science expertise by assisting their HR department in developing a classification model. This model will predict whether job applicants are likely to earn more or less than $50,000 annually, helping Microsoft optimize its hiring process for a specific $50,000 annual salary position. By successfully developing this data-driven solution, I will not only contribute to improving their HR practices but also showcase my capabilities as a data scientist. Microsoft's commitment to innovation and efficiency in talent acquisition aligns with this project's goal.
+The CCO at JetBlue Airways is closely monitoring social media to understand customer sentiment. They've observed a surge in negative tweets and a decrease in overall customer satisfaction scores in recent months. This trend has raised concerns within JetBlue's management team, as they are committed to providing exceptional service.
 
-![img](./images/giphy.gif)
+The CCO believes that analyzing the sentiment of user tweets can provide valuable insights into the specific issues and areas where JetBlue may be falling short of meeting customer expectations. They are particularly interested in understanding the sentiments associated with JetBlue and how it compares to competitors in the market. To address this, the CCO wants to commission a sentiment analysis NLP model and has chosen to hire you for this project. The model should perform the following tasks:
+
+    - Sentiment Classification: The model should classify user sentiment in tweets as Positive, Neutral, or Negative, providing an overall sentiment assessment.
+
+
+    - Focus on Precision: We want to be able to consistently predict as many True Negatives as possible so focusing on precision is a must.
+
+The sentiment analysis NLP model that you will develop plays a crucial role in helping the CCO and the JetBlue team better understand customer sentiment, pinpoint trouble spots, and make data-driven decisions to enhance the passenger experience and maintain their competitive edge in the airline industry.
+![img](./images/aibrain.jpg)
 
 ## Data
 
-I'm using salary cenus data that was donated on 4/30/1996 to the UCI Machine Learning Repository which can be found [here](https://archive.ics.uci.edu/dataset/20/census+income).
+The data was made available on [Kaggle](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment) . The twitter data was scraped from February 2015 for 2 weeks and contains over 14K tweets and their sentiment (positive, neutral, or negative) regarding 6 major airlines in the US.
+
+![img](./images/tweetdistribution.png)
+![img](./images/sentimentdistribution.png)
+![img](./images/piechart.png)
+![img](./images/negativereason.png)
 
 ## Methods
 
-Through upscaling a unbalanced dataset using SMOTE, using classes to test multiple hyperparameters, I was able to find the optimal Logistic Regression and Decision Tree model for my dataset.
+Due to the nature of this project, I utilized an NLP model to classify user sentiment of the afformentioned airline data. I had tested both forms of vectorization (Count Vectorization and TF-IDF) to test the effectiveness on a model to model basis. I had experimented with a baseline of multiple models, five unique models to be specific, with two seperate vectorizors. However I only hyperparameter tuned 4 models in total (The two highest performing baseline models for each vectorizor) due to a lack of computational power.
 
 ## Baseline Models
 
-Assembling a top-notch production team is essential for creating a successful film. Identifying the best director and writer for the job is crucial. While actors play significant roles, directors often craft roles with specific actors in mind. Therefore, determining the most successful actor may not directly contribute to our production team's ability to make the best possible movie. The success of a film largely hinges on the artistic vision of the director and the script quality. Relying solely on statistics related to actors may not enhance our return on investment (ROI) and could potentially have a detrimental impact on the film's quality.
 
-### Logistic Regression
+### TF-IDF Vectorization
 
-Baseline Matrix:
-<br>
-![img](./images/logregbase.png)
-<br>
-Baseline AUC:
-<br>
-![img](./images/logregbaseauc.png)
-<br>
-Scores:
 ```
-Accuracy train Data: 82.82%
-Accuracy test Data: 80.73%
+LogisticRegression  Precision Score: 72.84%
+              precision    recall  f1-score   support
 
-Recall train Data: 85.93%
-Recall test Data: 83.71%
+           0       0.80      0.85      0.82      1677
+           1       0.60      0.53      0.56       748
+           2       0.69      0.67      0.68       548
 
-Precision train Data: 80.9%
-Precision test Data: 58.38%
+    accuracy                           0.73      2973
+   macro avg       0.70      0.68      0.69      2973
+weighted avg       0.73      0.73      0.73      2973
 
-F1 train Data: 83.34%
-F1 test Data: 68.79%
+MultinomialNB  Precision Score: 76.93%
+              precision    recall  f1-score   support
+
+           0       0.87      0.82      0.84      1905
+           1       0.44      0.59      0.51       493
+           2       0.70      0.65      0.68       575
+
+    accuracy                           0.75      2973
+   macro avg       0.67      0.69      0.68      2973
+weighted avg       0.77      0.75      0.76      2973
+
+DecisionTreeClassifier  Precision Score: 65.26%
+              precision    recall  f1-score   support
+
+           0       0.76      0.78      0.77      1735
+           1       0.47      0.44      0.45       707
+           2       0.55      0.56      0.56       531
+
+    accuracy                           0.66      2973
+   macro avg       0.59      0.59      0.59      2973
+weighted avg       0.65      0.66      0.65      2973
+
+RandomForestClassifier  Precision Score: 73.8%
+              precision    recall  f1-score   support
+
+           0       0.85      0.79      0.82      1906
+           1       0.51      0.56      0.53       600
+           2       0.59      0.67      0.63       467
+
+    accuracy                           0.73      2973
+   macro avg       0.65      0.67      0.66      2973
+weighted avg       0.74      0.73      0.73      2973
+
+GradientBoostingClassifier  Precision Score: 67.51%
+              precision    recall  f1-score   support
+
+           0       0.70      0.85      0.77      1461
+           1       0.68      0.44      0.53      1030
+           2       0.58      0.65      0.61       482
+
+    accuracy                           0.68      2973
+   macro avg       0.66      0.65      0.64      2973
+weighted avg       0.68      0.68      0.66      2973
+
+XGBClassifier  Precision Score: 71.65%
+              precision    recall  f1-score   support
+
+           0       0.79      0.84      0.82      1683
+           1       0.61      0.51      0.56       787
+           2       0.62      0.66      0.64       503
+
+    accuracy                           0.72      2973
+   macro avg       0.68      0.67      0.67      2973
+weighted avg       0.72      0.72      0.72      2973
+
 ```
-The accuracy and AUC is already pretty good so it may be difficult to improve this model from its baseline. But the performance is defintiely looking good.
 
-### Decision Tree
+![img](./images/logreg.png)
+![img](./images/mnb.png)
+![img](./images/dt.png)
+![img](./images/rf.png)
+![img](./images/gb.png)
+![img](./images/xgb.png)
+![img](./images/roc.jpg)
 
-Baseline Decision Tree:
-<br>
-![img](./images/dtbase.png)
+### Count Vectorization
 
-Baseline DT Matrix:
-<br>
-![img](./images/dtbasecon.png)
-
-Baseline AUC:
-<br>
-![img](./images/dtbaseauc.png)
-
-Scores:
 ```
-Accuracy train Data: 98.38%
-Accuracy test Data: 79.75%
+LogisticRegression  Precision Score: 72.95%
+              precision    recall  f1-score   support
 
-Recall train Data: 97.69%
-Recall test Data: 61.97%
+           0       0.81      0.85      0.83      1695
+           1       0.59      0.54      0.56       717
+           2       0.68      0.65      0.66       561
 
-Precision train Data: 99.05%
-Precision test Data: 59.71%
+    accuracy                           0.73      2973
+   macro avg       0.69      0.68      0.68      2973
+weighted avg       0.73      0.73      0.73      2973
 
-F1 train Data: 98.37%
-F1 test Data: 60.82%
+MultinomialNB  Precision Score: 79.42%
+              precision    recall  f1-score   support
+
+           0       0.91      0.79      0.84      2056
+           1       0.43      0.64      0.52       447
+           2       0.63      0.71      0.67       470
+
+    accuracy                           0.75      2973
+   macro avg       0.66      0.71      0.68      2973
+weighted avg       0.79      0.75      0.77      2973
+
+DecisionTreeClassifier  Precision Score: 59.0%
+              precision    recall  f1-score   support
+
+           0       0.64      0.80      0.71      1442
+           1       0.52      0.41      0.46       823
+           2       0.57      0.43      0.49       708
+
+    accuracy                           0.60      2973
+   macro avg       0.58      0.55      0.55      2973
+weighted avg       0.59      0.60      0.59      2973
+
+RandomForestClassifier  Precision Score: 67.25%
+              precision    recall  f1-score   support
+
+           0       0.75      0.81      0.78      1632
+           1       0.53      0.48      0.51       722
+           2       0.64      0.55      0.59       619
+
+    accuracy                           0.68      2973
+   macro avg       0.64      0.62      0.63      2973
+weighted avg       0.67      0.68      0.67      2973
+
+GradientBoostingClassifier  Precision Score: 67.49%
+              precision    recall  f1-score   support
+
+           0       0.71      0.84      0.77      1506
+           1       0.66      0.45      0.54       963
+           2       0.59      0.63      0.61       504
+
+    accuracy                           0.68      2973
+   macro avg       0.66      0.64      0.64      2973
+weighted avg       0.67      0.68      0.67      2973
+
+XGBClassifier  Precision Score: 71.41%
+              precision    recall  f1-score   support
+
+           0       0.79      0.83      0.81      1685
+           1       0.61      0.52      0.56       771
+           2       0.62      0.64      0.63       517
+
+    accuracy                           0.72      2973
+   macro avg       0.67      0.67      0.67      2973
+weighted avg       0.71      0.72      0.72      2973
+
 ```
-This model is definitely overfitted which is to be expected with DT models. Its not performing as well as the LogReg either but we should base our decision on the tuned models. The AUC is fairly low compared to the LogReg as well.
+![img](./images/roc-count.jpg)
+![img](./images/logregcount.jpg)
+![img](./images/mnbcount.jpg)
+![img](./images/dtcount.jpg)
+![img](./images/rfcount.png)
+![img](./images/gbcount.png)
+![img](./images/xgbcount.png)
+![img](./images/roccount.jpg)
 
+
+## Cross-Validation
+
+### TF-IDF 
+
+```
+============================== LogisticRegression ==============================
+Precision Scores:
+[0.81909721 0.80449119 0.8617358  0.8479915  0.8603556 ]
+Mean Precision: 83.87%
+Standard Deviation: 2.30%
+
+
+============================== MultinomialNB ==============================
+Precision Scores:
+[0.813952   0.81972017 0.8543575  0.83424737 0.85947591]
+Mean Precision: 83.64%
+Standard Deviation: 1.81%
+
+
+============================== DecisionTreeClassifier ==============================
+Precision Scores:
+[0.73980553 0.75917857 0.85173701 0.84156997 0.84334706]
+Mean Precision: 80.71%
+Standard Deviation: 4.76%
+
+
+============================== RandomForestClassifier ==============================
+Precision Scores:
+[0.84180334 0.84203078 0.92126914 0.91119885 0.92210788]
+Mean Precision: 88.77%
+Standard Deviation: 3.76%
+
+
+============================== GradientBoostingClassifier ==============================
+Precision Scores:
+[0.70535662 0.73721904 0.78932189 0.78332205 0.79241155]
+Mean Precision: 76.15%
+Standard Deviation: 3.45%
+
+
+============================== XGBClassifier ==============================
+Precision Scores:
+[0.76964611 0.79166649 0.86490246 0.86378973 0.86379831]
+Mean Precision: 83.08%
+Standard Deviation: 4.15%
+```
+
+### Count Vectorization
+
+```
+============================== LogisticRegression ==============================
+Precision Scores:
+[0.69409436 0.72064579 0.81109406 0.80796113 0.82469478]
+Mean Precision: 77.17%
+Standard Deviation: 5.35%
+
+
+============================== MultinomialNB ==============================
+Precision Scores:
+[0.68358851 0.69163927 0.74652675 0.73504734 0.67874809]
+Mean Precision: 70.71%
+Standard Deviation: 2.80%
+
+
+============================== DecisionTreeClassifier ==============================
+Precision Scores:
+[0.61608355 0.65731182 0.78505173 0.76506145 0.77881292]
+Mean Precision: 72.05%
+Standard Deviation: 6.99%
+
+
+============================== RandomForestClassifier ==============================
+Precision Scores:
+[0.67692562 0.6986353  0.80925956 0.79998089 0.8090173 ]
+Mean Precision: 75.88%
+Standard Deviation: 5.85%
+
+
+============================== GradientBoostingClassifier ==============================
+Precision Scores:
+[0.67303986 0.69065099 0.77438445 0.77686107 0.78111248]
+Mean Precision: 73.92%
+Standard Deviation: 4.72%
+
+
+============================== XGBClassifier ==============================
+Precision Scores:
+[0.68620356 0.71397281 0.79770611 0.79200361 0.80950869]
+Mean Precision: 75.99%
+Standard Deviation: 4.99%
+```
 
 ## Trained Models
 
-After all hyperparameter tuning these are the final models I created.
+I Decided to only Train the top performing models of both Vectorizations to save time.
 
-### Logistic Regression
+###  TF-IDF
 
-Best Hyper-Parameters for Logistic Regressions:
+Best Hyper-Parameters for Random Forests:
 ```
-[({'C': 1.0,
-   'max_iter': 1000,
-   'penalty': 'l1',
-   'random_state': 42,
-   'solver': 'liblinear',
-   'tol': 0.001},
-  0.8271080139372822,
-  0.8074172827536056)]
+Best Hyperparameters: {'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 300}
+Best Precision Score: 0.8872593898880913
+Precision on Test Set: 0.7153961313817274
 ```
-Scores for this model:
+Best Hyper-Parameters for Multinomial NB:
 ```
-Accuracy train: 0.828
-Accuracy test: 0.807
-
-Recall train: 0.859
-Recall test: 0.839
-
-F1 train: 0.833
-F1 test:  0.689
-
-CV results: 0.827
-
-Precision train: 0.809
-Precision test: 0.584
+Best Hyperparameters: {'alpha': 0.001}
+Best Precision Score: 0.8794520288324238
+Precision on Test Set: 0.6917885729838786
 ```
-### Decision Tree
+### Count Vectorization
 
-Best Hyper-Parameters for Decision Tree:
+Best Hyper-Parameters for Logistic Regression:
 ```
-[({'criterion': 'gini',
-   'max_depth': 7,
-   'min_samples_leaf': 2,
-   'min_samples_split': 2,
-   'random_state': 42},
-  0.8286759581881533,
-  0.7765119379469155)]
+Best Hyperparameters: {'C': 1.0, 'penalty': 'l2', 'solver': 'liblinear'}
+Best Precision Score: 0.7748965088573446
+Precision on Test Set: 0.7511136750037432
 ```
-Scores for this model:
+Multinomial NB:
 ```
-Accuracy train: 0.833
-Accuracy test: 0.777
-
-Recall train: 0.910
-Recall test: 0.852
-
-F1 train: 0.845
-F1 test: 0.659
-
-CV results: 0.829
-
-Precision train: 0.809
-Precision test: 0.584
+Best Hyperparameters: {'alpha': 0.01}
+Best Precision Score: 0.7277756939205042
+Precision on Test Set: 0.7213838350338693
 ```
-Trained DT Model:
+
+Trained Random Forest Model:
 <br>
 ![img](./images/traineddt.png)
 
+Trained Multinomial NB Model (TF-IDF):
+<br>
+![img](./images/traineddt.png)
 
-ROC for both models:
+Trained Multinomial NB Model (Count Vec.):
+<br>
+![img](./images/traineddt.png)
+
+Trained Logistic Regression Model:
+<br>
+![img](./images/traineddt.png)
+
+ROC for all models:
 <br>
 ![img](./images/roc.png)
 
 
 ## Conclusion
 
-In this project, I aimed to develop classification models to predict whether a candidate's income exceeds $50,000 annually. Working with an imbalanced dataset, I employed various techniques to enhance model performance. Here's a summary of my findings:
-
-### Logistic Regression
-The logistic regression model provided a reasonable baseline performance with an accuracy of approximately 80.73% on the test data. However, precision on the test set was lower at 58.38%, indicating that there were some false positives. This model can be considered a suitable starting point, but there's room for improvement.
-
-### Decision Tree
-The decision tree model, while overfitting the training data, showed promise. Its test accuracy was around 79.75%, with precision at 59.71%. Although overfitting is a concern, the model's potential for generalization suggests that further optimization and tuning may yield superior results.
+   - Multinominal NB was consistently the best performing model however it not extremely time efficient. It take me about 1 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
+   <br>
+   
+   - TF-IDF had better cross-validation scores and lower variance but Count Vectorization did out perform on certain models such as Multinominal. 
+   <br>
+   
+   - TF-IDF Vectorization seems to work best with our current dataset. I found that the models actually ran quicker for TF-IDF as well as the scores tended to be better. Count Vectorization seemed to allow some overfitting as the test scores did not match the train set very well
+   <br>
 
 ### Recommendations
-  - Prefer Logistic Regression: Among the two models, the logistic regression model outperforms the decision tree model, showing better accuracy and precision. It is advisable to prioritize using the logistic regression model for predictions.
+  - If we are looking for the best scores possible I would suggest using the Logistic Regression model. However I would incorporate the use of some sort of cloud service that would allow for more time efficient testing
+   <br>
+   
+   - MultinominalNB was the fastest performing model that had acceptable test scores. If we were working on a time constraint I would recommend that 
+   <br>
+   
+   - This dataset was fairly imbalanced. Assuming you did not want to tamper with anything I would suggest using some form of boosting algorithm. (XGBoost, Gradient Boosting)
 
-  - Further Model Improvement: While we have made progress in optimizing these models, it's worth exploring other classification algorithms like K-Nearest Neighbors (KNN) or Random Forest to potentially achieve better performance. These models may offer different insights and capabilities for your specific use case.
 
 
 ### Next Steps
 To continue improving and expanding this project, here are some suggested next steps:
 
   - Cloud Deployment: I would consider deploying the machine learning model to a cloud service, such as AWS or Saturn Cloud. This will enable me to conduct more extensive hyperparameter tuning and make the model accessible for real-world predictions.
-
-  - Explore Additional Models: I'd experiment with different classification models, such as K-Nearest Neighbors (KNN), Random Forest, Support Vector Machines (SVM), or Neural Networks. Each model has its strengths and may provide enhanced predictive capabilities.
-
+  <br>
   - Polish Model Pipelines: Streamlining the model training and testing processes by refining the ModelValidator class and pipelines would be essential. Creating efficient and versatile pipelines can help save time and maintain consistency in the modeling workflow.
-
-  - Data Enhancement: Importing more up-to-date and detailed data to enhance the quality of predictions would be a priority. Cleaning and maintaining a rich dataset is crucial for accurate modeling.
-
-  - Comparative Analysis: Comparing the performance of different models across various genres, directors, or other relevant factors can offer valuable insights into the preferences and trends in the industry.
-
-  - By following these next steps and continuously refining the models, I can provide more accurate and insightful predictions, making a valuable contribution to Microsoft's HR practices and further showcasing my data science capabilities.
+  <br>
+  - Due to time constraints, I was only able to fully hyperparameter tune 4 models, which were the highest performing baseline models. However I left the code for all the other models.
+  <br>
+  - Neural networks are known for their performance. Through using Tensorflow and Keras we could optimize a model that would allow us to be able to predict with a higher precision and accuracy.
+  <br>
+  - We could expand our model by also predicting what caused the negative review as well. We can predict if a review is negative or not, however to predicit if a review is negative and why would significantly contribute to JetBlue as a whole
 
 ## For More Information
 

@@ -193,7 +193,7 @@ XGBClassifier  Precision Score: 71.41%
 weighted avg       0.71      0.72      0.72      2973
 
 ```
-![img](./images/roc-count.png)
+![img](./images/roccount.png)
 <br>
 ![img](./images/logregcount.png)
 <br>
@@ -390,7 +390,7 @@ To continue improving and expanding this project, here are some suggested next s
 
 ## For More Information
 
-Please review the full analysis in [my Jupyter Notebook](./code/Airline Sentiment Analysis.ipynb) or my [presentation](Airline Sentiment Analysis (NLP).pdf).
+Please review the full analysis in [my Jupyter Notebook](./code/Airline Sentiment Analysis.ipynb) or my [presentation](./Airline Sentiment Analysis (NLP).pdf).
 
 For any additional questions, please contact me:
 

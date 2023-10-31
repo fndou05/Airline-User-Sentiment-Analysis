@@ -15,9 +15,9 @@ The CCO at JetBlue Airways is closely monitoring social media to understand cust
 
 The CCO believes that analyzing the sentiment of user tweets can provide valuable insights into the specific issues and areas where JetBlue may be falling short of meeting customer expectations. They are particularly interested in understanding the sentiments associated with JetBlue and how it compares to competitors in the market. To address this, the CCO wants to commission a sentiment analysis NLP model and has chosen to hire you for this project. The model should perform the following tasks:
 
-   - Sentiment Classification: The model should classify user sentiment in tweets as Positive, Neutral, or Negative, providing an overall sentiment assessment.
+* Sentiment Classification: The model should classify user sentiment in tweets as Positive, Neutral, or Negative, providing an overall sentiment assessment.
 <br>
-   - Focus on Precision: We want to be able to consistently predict as many True Negatives as possible so focusing on precision is a must.
+* Focus on Precision: We want to be able to consistently predict as many True Negatives as possible so focusing on precision is a must.
 
 The sentiment analysis NLP model that you will develop plays a crucial role in helping the CCO and the JetBlue team better understand customer sentiment, pinpoint trouble spots, and make data-driven decisions to enhance the passenger experience and maintain their competitive edge in the airline industry.
 
@@ -122,7 +122,7 @@ weighted avg       0.72      0.72      0.72      2973
 <br>
 ![img](./images/xgb.png)
 <br>
-![img](./images/roc.jpg)
+![img](./images/roc.png)
 
 ### Count Vectorization
 
@@ -359,38 +359,34 @@ ROC for all models:
 
 ## Conclusion
 
-   - Logisitc Regression was consistently the best performing model however it not extremely time efficient. It take me about 5 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
+* Logisitc Regression was consistently the best performing model however it not extremely time efficient. It take me about 5 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
    <br>
-   
-   - TF-IDF had better cross-validation scores and lower variance but Count Vectorization did out perform on certain models such as Multinominal. 
+* TF-IDF had better cross-validation scores and lower variance but Count Vectorization did out perform on certain models such as Multinominal. 
    <br>
-   
-   - TF-IDF Vectorization seems to work best with our current dataset. I found that the models actually ran quicker for TF-IDF as well as the scores tended to be better. Count Vectorization seemed to allow some overfitting as the test scores did not match the train set very well
+* TF-IDF Vectorization seems to work best with our current dataset. I found that the models actually ran quicker for TF-IDF as well as the scores tended to be better. Count Vectorization seemed to allow some overfitting as the test scores did not match the train set very well
    <br>
 
 ### Recommendations
-  - If we are looking for the best scores possible I would suggest using the Logistic Regression model. However I would incorporate the use of some sort of cloud service that would allow for more time efficient testing
+* If we are looking for the best scores possible I would suggest using the Logistic Regression model. However I would incorporate the use of some sort of cloud service that would allow for more time efficient testing
+   <br> 
+* MultinominalNB was the fastest performing model that had acceptable test scores. If we were working on a time constraint I would recommend that 
    <br>
-   
-   - MultinominalNB was the fastest performing model that had acceptable test scores. If we were working on a time constraint I would recommend that 
-   <br>
-   
-   - This dataset was fairly imbalanced. Assuming you did not want to tamper with anything I would suggest using some form of boosting algorithm. (XGBoost, Gradient Boosting)
+* This dataset was fairly imbalanced. Assuming you did not want to tamper with anything I would suggest using some form of boosting algorithm. (XGBoost, Gradient Boosting)
 
 
 
 ### Next Steps
 To continue improving and expanding this project, here are some suggested next steps:
 
-  - Cloud Deployment: I would consider deploying the machine learning model to a cloud service, such as AWS or Saturn Cloud. This will enable me to conduct more extensive hyperparameter tuning and make the model accessible for real-world predictions.
+* Cloud Deployment: I would consider deploying the machine learning model to a cloud service, such as AWS or Saturn Cloud. This will enable me to conduct more extensive hyperparameter tuning and make the model accessible for real-world predictions.
   <br>
-  - Establish a Comprehensive Model Training Pipeline: Creating a well-defined model training pipeline is crucial for managing the end-to-end machine learning process efficiently. This pipeline should encompass various stages, from data preprocessing to model evaluation. Here's a breakdown of key components:
+* Establish a Comprehensive Model Training Pipeline: Creating a well-defined model training pipeline is crucial for managing the end-to-end machine learning process efficiently. This pipeline should encompass various stages, from data preprocessing to model evaluation. Here's a breakdown of key components:
   <br>
-  - Due to time constraints, I was only able to fully hyperparameter tune 4 models, which were the highest performing baseline models. However I left the code for all the other models.
+* Due to time constraints, I was only able to fully hyperparameter tune 4 models, which were the highest performing baseline models. However I left the code for all the other models.
   <br>
-  - Neural networks are known for their performance. Through using Tensorflow and Keras we could optimize a model that would allow us to be able to predict with a higher precision and accuracy.
+* Neural networks are known for their performance. Through using Tensorflow and Keras we could optimize a model that would allow us to be able to predict with a higher precision and accuracy.
   <br>
-  - We could expand our model by also predicting what caused the negative review as well. We can predict if a review is negative or not, however to predicit if a review is negative and why would significantly contribute to JetBlue as a whole
+* We could expand our model by also predicting what caused the negative review as well. We can predict if a review is negative or not, however to predicit if a review is negative and why would significantly contribute to JetBlue as a whole
   
 
 ## For More Information

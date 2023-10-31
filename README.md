@@ -390,7 +390,7 @@ To continue improving and expanding this project, here are some suggested next s
 
 ## For More Information
 
-Please review the full analysis in [my Jupyter Notebook](./code/Airline Sentiment Analysis.ipynb) or my [presentation](./Airline Sentiment Analysis (NLP).pdf).
+Please review the full analysis in [my Jupyter Notebook](./code/Airline-Sentiment-Analysis.ipynb) or my [presentation](./Airline-Sentiment-Analysis-(NLP).pdf).
 
 For any additional questions, please contact me:
 

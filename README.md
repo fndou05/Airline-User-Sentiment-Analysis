@@ -1,4 +1,4 @@
-![img](./images.JetBlue-Logo_Blue.png)
+![img](./images/JetBlue-Logo_Blue.png)
 
 # Twitter-Sentiment-Analysis
 
@@ -15,21 +15,22 @@ The CCO at JetBlue Airways is closely monitoring social media to understand cust
 
 The CCO believes that analyzing the sentiment of user tweets can provide valuable insights into the specific issues and areas where JetBlue may be falling short of meeting customer expectations. They are particularly interested in understanding the sentiments associated with JetBlue and how it compares to competitors in the market. To address this, the CCO wants to commission a sentiment analysis NLP model and has chosen to hire you for this project. The model should perform the following tasks:
 
-    - Sentiment Classification: The model should classify user sentiment in tweets as Positive, Neutral, or Negative, providing an overall sentiment assessment.
-
-
-    - Focus on Precision: We want to be able to consistently predict as many True Negatives as possible so focusing on precision is a must.
+   - Sentiment Classification: The model should classify user sentiment in tweets as Positive, Neutral, or Negative, providing an overall sentiment assessment.
+<br>
+   - Focus on Precision: We want to be able to consistently predict as many True Negatives as possible so focusing on precision is a must.
 
 The sentiment analysis NLP model that you will develop plays a crucial role in helping the CCO and the JetBlue team better understand customer sentiment, pinpoint trouble spots, and make data-driven decisions to enhance the passenger experience and maintain their competitive edge in the airline industry.
-![img](./images/aibrain.jpg)
 
 ## Data
 
 The data was made available on [Kaggle](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment) . The twitter data was scraped from February 2015 for 2 weeks and contains over 14K tweets and their sentiment (positive, neutral, or negative) regarding 6 major airlines in the US.
 
 ![img](./images/tweetdistribution.png)
+<br>
 ![img](./images/sentimentdistribution.png)
+<br>
 ![img](./images/piechart.png)
+<br>
 ![img](./images/negativereason.png)
 
 ## Methods
@@ -37,7 +38,6 @@ The data was made available on [Kaggle](https://www.kaggle.com/datasets/crowdflo
 Due to the nature of this project, I utilized an NLP model to classify user sentiment of the afformentioned airline data. I had tested both forms of vectorization (Count Vectorization and TF-IDF) to test the effectiveness on a model to model basis. I had experimented with a baseline of multiple models, five unique models to be specific, with two seperate vectorizors. However I only hyperparameter tuned 4 models in total (The two highest performing baseline models for each vectorizor) due to a lack of computational power.
 
 ## Baseline Models
-
 
 ### TF-IDF Vectorization
 
@@ -111,11 +111,17 @@ weighted avg       0.72      0.72      0.72      2973
 ```
 
 ![img](./images/logreg.png)
+<br>
 ![img](./images/mnb.png)
+<br>
 ![img](./images/dt.png)
+<br>
 ![img](./images/rf.png)
+<br>
 ![img](./images/gb.png)
+<br>
 ![img](./images/xgb.png)
+<br>
 ![img](./images/roc.jpg)
 
 ### Count Vectorization
@@ -188,14 +194,21 @@ XGBClassifier  Precision Score: 71.41%
 weighted avg       0.71      0.72      0.72      2973
 
 ```
-![img](./images/roc-count.jpg)
-![img](./images/logregcount.jpg)
-![img](./images/mnbcount.jpg)
-![img](./images/dtcount.jpg)
+![img](./images/roc-count.png)
+<br>
+![img](./images/logregcount.png)
+<br>
+![img](./images/mnbcount.png)
+<br>
+![img](./images/dtcount.png)
+<br>
 ![img](./images/rfcount.png)
+<br>
 ![img](./images/gbcount.png)
+<br>
 ![img](./images/xgbcount.png)
-![img](./images/roccount.jpg)
+<br>
+![img](./images/roccount.png)
 
 
 ## Cross-Validation
@@ -346,7 +359,7 @@ ROC for all models:
 
 ## Conclusion
 
-   - Multinominal NB was consistently the best performing model however it not extremely time efficient. It take me about 1 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
+   - Logisitc Regression was consistently the best performing model however it not extremely time efficient. It take me about 5 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
    <br>
    
    - TF-IDF had better cross-validation scores and lower variance but Count Vectorization did out perform on certain models such as Multinominal. 
@@ -371,17 +384,18 @@ To continue improving and expanding this project, here are some suggested next s
 
   - Cloud Deployment: I would consider deploying the machine learning model to a cloud service, such as AWS or Saturn Cloud. This will enable me to conduct more extensive hyperparameter tuning and make the model accessible for real-world predictions.
   <br>
-  - Polish Model Pipelines: Streamlining the model training and testing processes by refining the ModelValidator class and pipelines would be essential. Creating efficient and versatile pipelines can help save time and maintain consistency in the modeling workflow.
+  - Establish a Comprehensive Model Training Pipeline: Creating a well-defined model training pipeline is crucial for managing the end-to-end machine learning process efficiently. This pipeline should encompass various stages, from data preprocessing to model evaluation. Here's a breakdown of key components:
   <br>
   - Due to time constraints, I was only able to fully hyperparameter tune 4 models, which were the highest performing baseline models. However I left the code for all the other models.
   <br>
   - Neural networks are known for their performance. Through using Tensorflow and Keras we could optimize a model that would allow us to be able to predict with a higher precision and accuracy.
   <br>
   - We could expand our model by also predicting what caused the negative review as well. We can predict if a review is negative or not, however to predicit if a review is negative and why would significantly contribute to JetBlue as a whole
+  
 
 ## For More Information
 
-Please review the full analysis in [my Jupyter Notebook](./code/Salary-Classifcation-Models.ipynb) or my [presentation](./Salary_Prediction.pdf).
+Please review the full analysis in [my Jupyter Notebook](./code/Airline Sentiment Analysis.ipynb) or my [presentation](./Airline Sentiment Analysis (NLP).pdf).
 
 For any additional questions, please contact me:
 
@@ -393,11 +407,9 @@ Describe the structure of your repository and its contents, for example:
 
 ```
 ├── code
-│   ├── __init__.py
-│   ├── Cleaning-Salary-Data.ipynb
-│   └── Salary-Classifcation-Models.ipynb
+│   └── Airline Sentiment Analysis.ipynb
 ├── images
 ├── README.md
 ├── .gitignore
-└── Salary_Prediction.pdf
+└── Airline Sentiment Analysis (NLP).pdf
 ```

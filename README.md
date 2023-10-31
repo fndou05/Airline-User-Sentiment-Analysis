@@ -16,7 +16,6 @@ The CCO at JetBlue Airways is closely monitoring social media to understand cust
 The CCO believes that analyzing the sentiment of user tweets can provide valuable insights into the specific issues and areas where JetBlue may be falling short of meeting customer expectations. They are particularly interested in understanding the sentiments associated with JetBlue and how it compares to competitors in the market. To address this, the CCO wants to commission a sentiment analysis NLP model and has chosen to hire you for this project. The model should perform the following tasks:
 
 * Sentiment Classification: The model should classify user sentiment in tweets as Positive, Neutral, or Negative, providing an overall sentiment assessment.
-<br>
 * Focus on Precision: We want to be able to consistently predict as many True Negatives as possible so focusing on precision is a must.
 
 The sentiment analysis NLP model that you will develop plays a crucial role in helping the CCO and the JetBlue team better understand customer sentiment, pinpoint trouble spots, and make data-driven decisions to enhance the passenger experience and maintain their competitive edge in the airline industry.
@@ -391,7 +390,7 @@ To continue improving and expanding this project, here are some suggested next s
 
 ## For More Information
 
-Please review the full analysis in [my Jupyter Notebook](./code/Airline Sentiment Analysis.ipynb) or my [presentation](./Airline Sentiment Analysis (NLP).pdf).
+Please review the full analysis in [my Jupyter Notebook](./code/Airline Sentiment Analysis.ipynb) or my [presentation](Airline Sentiment Analysis (NLP).pdf).
 
 For any additional questions, please contact me:
 

@@ -335,27 +335,6 @@ Best Precision Score: 0.7277756939205042
 Precision on Test Set: 0.7213838350338693
 ```
 
-Trained Random Forest Model:
-<br>
-![img](./images/traineddt.png)
-
-Trained Multinomial NB Model (TF-IDF):
-<br>
-![img](./images/traineddt.png)
-
-Trained Multinomial NB Model (Count Vec.):
-<br>
-![img](./images/traineddt.png)
-
-Trained Logistic Regression Model:
-<br>
-![img](./images/traineddt.png)
-
-ROC for all models:
-<br>
-![img](./images/roc.png)
-
-
 ## Conclusion
 
 * Logisitc Regression was consistently the best performing model however it not extremely time efficient. It take me about 5 hour to run each model which is extremely time consuming. Compared to our other models I dont believe its worth the wait to save an extra percent due to the nature of our dataset. 
